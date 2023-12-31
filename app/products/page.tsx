@@ -14,7 +14,6 @@ import {
   TextField,
 } from '@mui/material';
 import { productSortOptions } from '@/app/lib/placeholder-data';
-import { getAllProducts } from '../ui/route';
 interface ProductData {
   id: number;
   title: string;
@@ -42,20 +41,20 @@ const Products = () => {
     return mappingArray;
   };
 
-  const fetchAllProducts = async () => {
-    try {
-      const data = await getAllProducts();
-      if (data) {
-        setProducts(data);
-        setLoading(false);
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  // const fetchAllProducts = async () => {
+  //   try {
+  //     const data = []
+  //     if (data) {
+  //       setProducts(data);
+  //       setLoading(false);
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
   useEffect(() => {
-    fetchAllProducts();
+    // fetchAllProducts();
   }, []);
 
   const sortByPriceAscending = (data: ProductData[]) => {

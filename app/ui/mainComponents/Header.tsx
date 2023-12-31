@@ -3,22 +3,21 @@ import { useEffect, useState } from 'react';
 import HeaderInfo from '../other/HeaderInfo';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import CartItemsTooltip from '../cart/CartItemsTooltip';
 import { CartItemsType } from '@/app/lib/definitions';
 
 const Header = () => {
   const pathname = usePathname();
   const [cartItems, setCartItems] = useState<CartItemsType[]>([]);
 
-  const fetchCartProducts = async () => {
-    const cartItems = JSON.parse(
-      localStorage.getItem('cart') || '[]'
-    ) as CartItemsType[];
+  // const fetchCartProducts = async () => {
+  //   const cartItems = JSON.parse(
+  //     localStorage.getItem('cart') || '[]'
+  //   ) as CartItemsType[];
 
-    if (cartItems) {
-      setCartItems(cartItems);
-    }
-  };
+  //   if (cartItems) {
+  //     setCartItems(cartItems);
+  //   }
+  // };
 
   const totalCartItems = cartItems.reduce((acc, item) => {
     return acc + item.quantity;
