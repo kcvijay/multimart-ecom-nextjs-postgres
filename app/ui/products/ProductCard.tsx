@@ -20,7 +20,7 @@ interface Props {
   rating: number;
 }
 
-const ProductCard = ({
+export default function ProductCard({
   id,
   brand,
   title,
@@ -29,7 +29,7 @@ const ProductCard = ({
   stock,
   discountPercentage,
   rating,
-}: Props) => {
+}: Props) {
   const [loading, setLoading] = useState(false);
   const addToCartHandler = () => {
     try {
@@ -116,6 +116,4 @@ const ProductCard = ({
       </div>
     </div>
   );
-};
-
-export default ProductCard;
+}

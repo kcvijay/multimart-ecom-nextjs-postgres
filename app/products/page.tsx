@@ -1,7 +1,8 @@
 'use client';
 import { useEffect, useState } from 'react';
-import ProductCard from '../UI/products/ProductCard';
 import CardSkeleton from '@/app/ui/products/CardSkeleton';
+import ProductCard from '@/app/ui/products/ProductCard';
+
 import {
   Box,
   MenuItem,
