@@ -1,14 +1,22 @@
-## MultiMart Online Shop
-### Created using TypeScript, Next.js & PostgreSQL
+## MultiMart Online Shop &mdash; TypeScript, Next.js & PostgreSQL
 
-### Primary technologies used
+### Primary Technologies
 - Next.js 14
 - TypeScript
 - PostgreSQL (Integrated with Vercel)
-- TailwindCSS
-- Product details source from: www.dummyjson.com, stored in own database
+- Tailwind CSS
+- Product details source from: www.dummyjson.com, stored in own PostgreSQL database
 
-### Secondary technologies / packages
-- Zod : server-side validation & Error handling
-- Clsx : Conditional classes
-- Use-debounce : For input debouncing / search optimization
+### Features
+
+- Fully responsive to all screen-sizes
+- 100 products
+- Server-side data fetching and rendering
+- Filter the products using URL path query (SEO optimization)
+- Request more products on 'Load More' button click (initial load 20 products)
+- Serverless PostgreSQL database
+- Definitive error handling
+
+### Coming soon...
+
+- Cart : stored both in localStorage and database using unique identifier

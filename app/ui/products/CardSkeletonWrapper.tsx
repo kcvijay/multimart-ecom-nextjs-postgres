@@ -2,7 +2,30 @@
 import React from 'react';
 import { Skeleton, Stack } from '@mui/material';
 
-const CardSkeleton = () => {
+export default function CardSkeletonWrapper() {
+  return (
+    <div>
+      <div className='flex gap-4 justify-center items-center mb-8'>
+        <span className='h-[60px] max-w-[300px] w-[200px] bg-gray-200'/>
+        <span className='h-[60px] max-w-[300px] w-[200px] bg-gray-200' />
+      </div>
+      <div className='grid-autofit justify-items-center align-middle'>
+        <CardSkeleton />
+        <CardSkeleton />
+        <CardSkeleton />
+        <CardSkeleton />
+        <CardSkeleton />
+        <CardSkeleton />
+        <CardSkeleton />
+        <CardSkeleton />
+        <CardSkeleton />
+        <CardSkeleton />
+      </div>
+    </div>
+  );
+}
+
+export const CardSkeleton = () => {
   return (
     <div className='max-w-[500px] min-w-[320px] w-full rounded-md overflow-hidden'>
       <Stack style={{}}>
@@ -63,5 +86,3 @@ const CardSkeleton = () => {
     </div>
   );
 };
-
-export default CardSkeleton;

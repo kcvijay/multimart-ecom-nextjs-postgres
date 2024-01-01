@@ -7,7 +7,7 @@ import StarIcon from '@mui/icons-material/Star';
 import { ProductDataType } from '@/app/lib/definitions';
 
 interface Props {
-  id: number;
+  pid: string;
   brand: string;
   title: string;
   description: string;
@@ -16,43 +16,27 @@ interface Props {
   images: string[];
   price: number;
   stock: number;
-  discountPercentage: number;
+  discountpercentage: number;
   rating: number;
 }
 
 export default function ProductCard({
-  id,
+  pid,
   brand,
   title,
   thumbnail,
   price,
   stock,
-  discountPercentage,
+  discountpercentage,
   rating,
 }: Props) {
   const [loading, setLoading] = useState(false);
-  const addToCartHandler = () => {
-    try {
-      const existingCart = JSON.parse(
-        localStorage.getItem('cart') || '[]'
-      ) as ProductDataType[];
-      const updatedCart = [
-        ...existingCart,
-        { id, brand, thumbnail, title, price, discountPercentage },
-      ];
-      setLoading(true);
-      localStorage.setItem('cart', JSON.stringify(updatedCart));
-      alert('Product added to cart!');
-      setLoading(false);
-    } catch (error) {
-      alert('Error: ' + error);
-    }
-  };
+
   return (
     <div className='max-w-[500px] min-w-[320px] w-full shadow-md rounded-md hover:shadow-none transition-all duration-300 overflow-hidden'>
       <div className='w-full h-[250px] relative overflow-hidden'>
         <Image
-          className='object-cover w-full h-full transition-all duration-200'
+          className='object-cover w-full h-auto transition-all duration-200'
           src={thumbnail}
           alt={title}
           width={600}
@@ -63,10 +47,10 @@ export default function ProductCard({
         </div>
         <div
           className={`${
-            discountPercentage ? 'flex' : 'hidden'
+            discountpercentage ? 'flex' : 'hidden'
           } absolute justify-center items-center -bottom-[24px] -left-[24px] bg-orange-600 w-[100px] h-[100px] text-white rounded-full -rotate-12 shadow-lg`}
         >
-          <p className='text-2xl pl-4'>-{Math.ceil(discountPercentage)}%</p>
+          <p className='text-2xl pl-4'>-{Math.ceil(discountpercentage)}%</p>
         </div>
       </div>
       <div className='p-6 flex flex-col gap-3 bg-white'>
@@ -74,10 +58,10 @@ export default function ProductCard({
           <p className='text-2xl text-sky-800'>{price} €</p>
           <p
             className={`${
-              discountPercentage ? 'block' : 'hidden'
+              discountpercentage ? 'block' : 'hidden'
             } text-lg text-orange-600 line-through`}
           >
-            {Math.floor(price / ((100 - discountPercentage) / 100))} €
+            {Math.floor(price / ((100 - discountpercentage) / 100))} €
           </p>
         </div>
 
@@ -103,7 +87,7 @@ export default function ProductCard({
               <span>Adding to Cart...</span>
             </button>
           ) : (
-            <button className='btnAddCart' onClick={() => addToCartHandler()}>
+            <button className='btnAddCart'>
               <AddShoppingCartOutlinedIcon />
               <span>Add to Cart</span>
             </button>
@@ -117,3 +101,21 @@ export default function ProductCard({
     </div>
   );
 }
+
+// const addToCartHandler = () => {
+//   try {
+//     const existingCart = JSON.parse(
+//       localStorage.getItem('cart') || '[]'
+//     ) as ProductDataType[];
+//     const updatedCart = [
+//       ...existingCart,
+//       { pid, brand, thumbnail, title, price, discountpercentage },
+//     ];
+//     setLoading(true);
+//     localStorage.setItem('cart', JSON.stringify(updatedCart));
+//     alert('Product added to cart!');
+//     setLoading(false);
+//   } catch (error) {
+//     alert('Error: ' + error);
+//   }
+// };

@@ -27,3 +27,21 @@ export interface CartItemsType {
   images: string[];
   quantity: number;
 }
+
+
+  export type Product = {
+    pid: string;
+    title: string;
+    description: string;
+    price: number;
+    discountpercentage: number;
+    rating: number;
+    stock: number;
+    brand: string;
+    category: string;
+    thumbnail: string;
+    images: string[];
+  };
+  
+
+}
