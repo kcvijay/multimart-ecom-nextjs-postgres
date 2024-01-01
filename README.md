@@ -20,3 +20,6 @@
 ### Coming soon...
 
 - Cart : stored both in localStorage and database using unique identifier
+
+### Deployed at
+https://multimart-ecom-nextjs-postgres.vercel.app
