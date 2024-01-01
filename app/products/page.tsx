@@ -24,7 +24,7 @@ export default async function Products({
       </div>
       <LoadMoreBtn
         buttonText={
-          currentPage === totalPages
+          allProducts.length === 100
             ? 'All products are loaded !'
             : 'Load More...'
         }
