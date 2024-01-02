@@ -1,26 +1,36 @@
 'use client';
+import { useState } from 'react';
+import Link from 'next/link';
 import { Product } from '@/app/lib/definitions';
 import Image from 'next/image';
-import Link from 'next/link';
 import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
 import { findOriginalPrice } from '@/app/utils/utilities';
 
 export function SingleProductWrapper(props: Product) {
+  const [selectedImage, setSelectedImage] = useState(props.thumbnail);
+
+  const handleMiniImageClick = (image: string) => {
+    setSelectedImage(image);
+  };
   return (
     <div className='flex justify-center'>
-      <div className='bg-white shadow-md max-w-[400px] min-w-[300px] rounded-md p-4'>
-        <figure className='w-full h-auto pb-4'>
+      <div className='bg-white shadow-md max-w-[500px] min-w-[300px] rounded-md p-6'>
+        <figure className='w-full h-[300px] pb-4 overflow-hidden'>
           <Image
-            className='w-full h-auto rounded-md object-cover'
-            src={props.thumbnail}
+            className='w-full h-full rounded-md'
+            src={selectedImage}
             alt='images'
-            width={400}
-            height={100}
+            width={500}
+            height={200}
           />
         </figure>
         <figure className='flex gap-4 overflow-x-auto pb-2'>
           {props.images.map((image: string) => (
-            <ProductImage key={image} image={image} />
+            <ProductImage
+              key={image}
+              image={image}
+              handleClick={() => handleMiniImageClick(image)}
+            />
           ))}
         </figure>
 
@@ -30,11 +40,11 @@ export function SingleProductWrapper(props: Product) {
         <section className='mt-4'>
           <table className='w-full border shadow'>
             <thead>
-              <th className='flex border-b py-2 text-slate-600 font-bold'>
-                <td className='flex-1 text-center'>Brand</td>
-                <td className='flex-1 text-center'>Category</td>
-                <td className='flex-1 text-center'>Rating</td>
-              </th>
+              <tr className='flex border-b py-2 text-slate-600 font-bold'>
+                <th className='flex-1 text-center'>Brand</th>
+                <th className='flex-1 text-center'>Category</th>
+                <th className='flex-1 text-center'>Rating</th>
+              </tr>
             </thead>
             <tbody className='text-slate-500'>
               <tr className='flex py-2'>
@@ -89,14 +99,21 @@ export function SingleProductWrapper(props: Product) {
   );
 }
 
-export function ProductImage({ image }: { image: string }) {
+export function ProductImage({
+  image,
+  handleClick,
+}: {
+  image: string;
+  handleClick: () => void;
+}) {
   return (
     <Image
-      className='rounded-md w-full flex-grow object-cover border shadow-md p-2'
+      className='rounded-md w-full flex-grow object-cover border shadow-md p-2 cursor-pointer active:bg-slate-200 transition-all'
       src={image}
       alt='images'
       width={80}
       height={50}
+      onClick={handleClick}
     />
   );
 }
