@@ -4,7 +4,9 @@ import Image from 'next/image';
 import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
 import { Rating } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
-import { ProductDataType } from '@/app/lib/definitions';
+import Link from 'next/link';
+
+const loading = false;
 
 interface Props {
   pid: string;
@@ -30,10 +32,8 @@ export default function ProductCard({
   discountpercentage,
   rating,
 }: Props) {
-  const [loading, setLoading] = useState(false);
-
   return (
-    <div className='max-w-[500px] min-w-[320px] w-full shadow-md rounded-md hover:shadow-none transition-all duration-300 overflow-hidden'>
+    <div className='max-w-[500px] min-w-[320px] w-full shadow rounded-md hover:shadow-none transition-all duration-300 overflow-hidden'>
       <div className='w-full h-[250px] relative overflow-hidden'>
         <Image
           className='object-cover w-full h-auto transition-all duration-200'
@@ -72,31 +72,36 @@ export default function ProductCard({
         <div className='flex justify-end gap-3 items-center text-sm text-slate-600'>
           <Rating
             name='read-only'
-            value={rating}
+            value={+rating}
             precision={0.5}
             style={{ fontSize: '16px' }}
             emptyIcon={<StarIcon style={{ opacity: 0.7, fontSize: '16px' }} />}
             readOnly
           />
-          <p className='border p-1 rounded-md'>{rating}</p>
+          <p className='border p-1 rounded-md'>{+rating}</p>
         </div>
 
-        {stock > 0 ? (
-          loading ? (
-            <button disabled className='btnDisabled'>
-              <span>Adding to Cart...</span>
-            </button>
+        <div className='flex gap-4 flex-wrap'>
+          <Link className='flex-1 btnProductView' href={`/products/${pid}`}>
+            View
+          </Link>
+          {stock > 0 ? (
+            loading ? (
+              <button disabled className='btnDisabled'>
+                <span>Adding to Cart...</span>
+              </button>
+            ) : (
+              <button className='btnAddCart flex-1'>
+                <AddShoppingCartOutlinedIcon />
+                <span>Add</span>
+              </button>
+            )
           ) : (
-            <button className='btnAddCart'>
-              <AddShoppingCartOutlinedIcon />
-              <span>Add to Cart</span>
+            <button disabled className='btnDisabled'>
+              <span>Out of Stock</span>
             </button>
-          )
-        ) : (
-          <button disabled className='btnDisabled'>
-            <span>Out of Stock</span>
-          </button>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );

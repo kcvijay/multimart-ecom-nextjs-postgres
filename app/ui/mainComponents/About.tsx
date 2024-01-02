@@ -1,7 +1,4 @@
 'use client';
-import ContainerHeader from '../other/ContainerHeader';
-import Image from 'next/image';
-
 const About = () => {
   return (
     <div className='mt-24 bg-slate-200 text-slate-800'>
@@ -9,7 +6,7 @@ const About = () => {
         <h2 className='text-3xl font-bold text-center pt-8'>
           Introducing MultiMart
         </h2>
-        <div className='md:text-xl text-center tracking-wide flex flex-col gap-6 p-12 transition-all'>
+        <div className='text-center tracking-wide flex flex-col gap-6 p-12 transition-all'>
           <p>
             MultiMart is your all-in-one online shopping destination, offering a
             diverse array of top-quality products, all easily accessible from

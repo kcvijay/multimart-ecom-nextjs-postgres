@@ -15,18 +15,44 @@ export async function getAllProducts() {
   }
 }
 
-/***********************************************/
+/***********************************************
+
+// export async function getFilteredProducts(
+//   query: string,
+//   currentPage: number,
+//   order: string
+// ) {
+//   noStore();
+//   try {
+//     const products = await sql<Product>`
+//     SELECT * FROM products
+//     WHERE products.title ILIKE ${`%${query}%`}
+//     ORDER BY ${order}
+//     LIMIT ${ITEMS_PER_PAGE * currentPage}
+//     `;
+//     return products.rows;
+//   } catch (error) {
+//     console.error(`Error while getting the data. ${error}`);
+//     throw new Error('Failed to fetch products.');
+//   }
+// }
+*/
 const ITEMS_PER_PAGE = 20;
-export async function getFilteredProducts(query: string, currentPage: number) {
+export async function getFilteredProducts(
+  query: string,
+  currentPage: number,
+  order: string
+) {
   noStore();
+
   try {
     const products = await sql<Product>`
-    SELECT * FROM products
-    WHERE products.title ILIKE ${`%${query}%`}
-    ORDER BY rating DESC
-    LIMIT ${ITEMS_PER_PAGE * currentPage}
+      SELECT * FROM products
+      WHERE products.title ILIKE ${`%${query}%`}
+      LIMIT ${ITEMS_PER_PAGE * currentPage}
     `;
-    return products.rows;
+    const sortedProducts = sortProducts(products.rows, order);
+    return sortedProducts;
   } catch (error) {
     console.error(`Error while getting the data. ${error}`);
     throw new Error('Failed to fetch products.');
@@ -49,76 +75,37 @@ export async function getProductsPages(query: string) {
   }
 }
 
-/************************************************/
-export async function getProducts_titleAscending() {
+export async function getProductById(id: string) {
   noStore();
-
   try {
-    const data = await sql<Product>`SELECT * FROM products ORDER BY title ASC`;
-    return data.rows;
+    const product = await sql<Product>`
+    SELECT * FROM products
+    WHERE products.pid = ${id}
+    LIMIT 1
+    `;
+    return product.rows[0];
   } catch (error) {
-    console.error(`Error while getting the data. ${error}`);
-    throw new Error('Failed to fetch products and sort by title ascending.');
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch product.');
   }
 }
 
-export async function getProducts_titleDescending() {
-  noStore();
-
-  try {
-    const data = await sql<Product>`SELECT * FROM products ORDER BY title DESC`;
-    return data.rows;
-  } catch (error) {
-    console.error(`Error while getting the data. ${error}`);
-    throw new Error('Failed to fetch products and sort by title descending.');
-  }
-}
-
-export async function getProducts_priceAscending() {
-  noStore();
-
-  try {
-    const data = await sql<Product>`SELECT * FROM products ORDER BY price ASC`;
-    return data.rows;
-  } catch (error) {
-    console.error(`Error while getting the data. ${error}`);
-    throw new Error('Failed to fetch products and sort by price ascending.');
-  }
-}
-
-export async function getProducts_priceDescending() {
-  noStore();
-
-  try {
-    const data = await sql<Product>`SELECT * FROM products ORDER BY price DESC`;
-    return data.rows;
-  } catch (error) {
-    console.error(`Error while getting the data. ${error}`);
-    throw new Error('Failed to fetch products and sort by price descending.');
-  }
-}
-
-export async function getProducts_ratingAscending() {
-  noStore();
-
-  try {
-    const data = await sql<Product>`SELECT * FROM products ORDER BY rating ASC`;
-    return data.rows;
-  } catch (error) {
-    console.error(`Error while getting the data. ${error}`);
-    throw new Error('Failed to fetch products and sort by rating ascending.');
-  }
-}
-
-export async function getProducts_ratingDescending() {
-  noStore();
-
-  try {
-    const data =
-      await sql<Product>`SELECT * FROM products ORDER BY rating DESC`;
-    return data.rows;
-  } catch (error) {
-    console.error(`Error while getting the data. ${error}`);
-    throw new Error('Failed to fetch products and sort by rating descending.');
+// An alternative to ORDER BY query.
+function sortProducts(products: Product[], order: string): Product[] {
+  switch (order) {
+    case 'title-asc':
+      return products.sort((a, b) => a.title.localeCompare(b.title));
+    case 'title-desc':
+      return products.sort((a, b) => b.title.localeCompare(a.title));
+    case 'price-asc':
+      return products.sort((a, b) => a.price - b.price);
+    case 'price-desc':
+      return products.sort((a, b) => b.price - a.price);
+    case 'rating-asc':
+      return products.sort((a, b) => a.rating - b.rating);
+    case 'rating-desc':
+      return products.sort((a, b) => b.rating - a.rating);
+    default:
+      return products;
   }
 }

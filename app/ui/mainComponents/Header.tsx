@@ -49,7 +49,7 @@ const Header = () => {
           </Link>
         </div>
         <nav className='text-slate-600'>
-          <ul className='flex justify-center items-center gap-8'>
+          <ul className='flex justify-center items-center gap-6'>
             <li>
               <Link
                 className={`navlink ${pathname === '/' ? 'active' : ''}`}

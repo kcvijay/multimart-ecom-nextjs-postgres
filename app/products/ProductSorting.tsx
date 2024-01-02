@@ -7,10 +7,12 @@ import {
   Select,
   Divider,
   TextField,
+  SelectChangeEvent,
 } from '@mui/material';
 import { productSortOptions } from '../lib/placeholder-data';
 import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 import { useDebouncedCallback } from 'use-debounce';
+import React from 'react';
 
 export default function ProductSorting() {
   const searchParams = useSearchParams();
@@ -27,6 +29,20 @@ export default function ProductSorting() {
     }
     replace(`${pathname}?${params.toString()}`);
   }, 300);
+
+  const handleSortChange = (event: SelectChangeEvent<string>) => {
+    const params = new URLSearchParams(searchParams);
+    const orderValue = event.target.value;
+    params.set('page', '1');
+
+    if (orderValue) {
+      params.set('order', event.target.value);
+    } else {
+      params.delete('order');
+    }
+    replace(`${pathname}?${params.toString()}`);
+  };
+
   return (
     <div>
       <form className='mb-8'>
@@ -56,12 +72,14 @@ export default function ProductSorting() {
               backgroundColor: '#fff',
             }}
           >
-            <InputLabel id='sortingOptionsLabel'>Sort</InputLabel>
+            <InputLabel id='sortingOptionsLabel'>Sort By</InputLabel>
             <Select
               labelId='sortingOptionsLabel'
               id='sortingOptions'
-              label='Sort'
+              label='Sort By'
+              value={searchParams?.get('order') || ''}
               sx={{ fontFamily: 'inherit' }}
+              onChange={handleSortChange}
             >
               {productSortOptions.map((option) => (
                 <MenuItem

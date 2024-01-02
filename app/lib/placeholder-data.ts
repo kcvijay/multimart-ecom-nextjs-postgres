@@ -38,12 +38,12 @@ export const footerList = [
 ];
 
 export const productSortOptions = [
-  { id: 1, value: 'price:asc', text: 'By Price - Low to High' },
-  { id: 2, value: 'price:desc', text: 'By Price - High to Low' },
-  { id: 3, value: 'title:asc', text: 'By Title (A - Z)' },
-  { id: 4, value: 'title:desc', text: 'By Title (Z - A)' },
-  { id: 5, value: 'rating:asc', text: 'By Rating - Low to High' },
-  { id: 6, value: 'rating:desc', text: 'By Rating - High to Low' },
+  { id: 1, value: 'price-asc', text: 'Price - Low to High' },
+  { id: 2, value: 'price-desc', text: 'Price - High to Low' },
+  { id: 3, value: 'title-asc', text: 'Title (A - Z)' },
+  { id: 4, value: 'title-desc', text: 'Title (Z - A)' },
+  { id: 5, value: 'rating-asc', text: 'Rating - Low to High' },
+  { id: 6, value: 'rating-desc', text: 'Rating - High to Low' },
 ];
 
 export const testimonials = [
@@ -76,4 +76,3 @@ export const testimonials = [
       "Shopping on Multimart is a game-changer. The efficient payment process and rapid delivery have made my online shopping stress-free. I appreciate the attention to detail in packaging, ensuring my items arrive in perfect condition. Multimart's dedication to providing a top-notch shopping experience has made me a loyal customer!",
   },
 ];
-

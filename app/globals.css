@@ -56,7 +56,7 @@ body {
 }
 
 .navlink {
-  @apply block max-w-[100px] min-w-[75px] hover:bg-slate-200 capitalize text-center p-3 rounded-full;
+  @apply block max-w-[100px] min-w-[75px] hover:bg-slate-200 capitalize text-center px-3 py-1 rounded-full;
 }
 
 .flexNavlink {
@@ -68,11 +68,15 @@ body {
 }
 
 .btnSecondary {
-  @apply inline-flex  justify-center items-center px-6 mt-6 text-orange-600 rounded-md uppercase tracking-wider shadow-md hover:shadow-none hover:bg-slate-100 transition-all py-3 border border-orange-600 bg-white active:shadow-none active:text-slate-500;
+  @apply flex gap-4 justify-center items-center px-6 py-3 text-orange-600 rounded-md uppercase tracking-wider shadow-md hover:shadow-none hover:bg-slate-100 transition-all border border-orange-600 bg-white active:shadow-none active:text-slate-500;
 }
 
 .btnAddCart {
-  @apply flex w-full justify-center items-center gap-4 text-center text-sky-600 rounded-md uppercase tracking-wider shadow-md hover:shadow-none hover:bg-sky-100 transition-all py-3 border border-sky-600 bg-white active:shadow-none active:text-slate-500;
+  @apply flex w-full justify-center items-center gap-4 text-center text-sky-600 rounded-md uppercase tracking-wider shadow-md hover:shadow-none hover:bg-sky-100 transition-all p-2 border border-sky-600 bg-white active:shadow-none active:text-slate-500;
+}
+
+.btnProductView {
+  @apply flex w-full justify-center items-center gap-4 text-center text-white bg-sky-600 rounded-md uppercase tracking-wider shadow-md hover:shadow-none hover:bg-sky-100 hover:text-sky-600 transition-all p-2 border border-sky-600 active:shadow-none active:text-slate-500;
 }
 
 .btnDisabled {
