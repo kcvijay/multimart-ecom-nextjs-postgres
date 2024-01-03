@@ -149,7 +149,7 @@ const Cart = () => {
         </>
       ) : (
         <div className='w-[300px] max-w-[500px] mx-auto bg-yellow-400 text-center py-3'>
-          <p>Cart is empty !</p>
+          <p>Cart is under construction...⛏️</p>
         </div>
       )}
 

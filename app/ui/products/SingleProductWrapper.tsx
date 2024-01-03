@@ -84,7 +84,7 @@ export function SingleProductWrapper(props: Product) {
             &larr; Return
           </Link>
           {props.stock > 0 ? (
-            <button className='btnAddCart flex-1 w-full'>
+            <button disabled className='btnAddCart btnDisabled flex-1 w-full'>
               <AddShoppingCartOutlinedIcon />
               <span>Add</span>
             </button>
@@ -108,7 +108,7 @@ export function ProductImage({
 }) {
   return (
     <Image
-      className='rounded-md h-auto flex-grow border shadow-md p-2 cursor-pointer active:bg-slate-200 transition-all'
+      className='rounded-md w-[100px] h-[100px] object-cover flex-grow border shadow-md p-2 cursor-pointer active:bg-slate-200 transition-all'
       src={image}
       alt='images'
       width={100}

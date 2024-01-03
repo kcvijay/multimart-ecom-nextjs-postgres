@@ -91,7 +91,7 @@ export default function ProductCard({
                 <span>Adding to Cart...</span>
               </button>
             ) : (
-              <button className='btnAddCart flex-1'>
+              <button disabled className='btnAddCart btnDisabled flex-1'>
                 <AddShoppingCartOutlinedIcon />
                 <span>Add</span>
               </button>
