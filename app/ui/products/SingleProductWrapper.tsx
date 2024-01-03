@@ -108,11 +108,11 @@ export function ProductImage({
 }) {
   return (
     <Image
-      className='rounded-md w-full flex-grow object-cover border shadow-md p-2 cursor-pointer active:bg-slate-200 transition-all'
+      className='rounded-md h-auto flex-grow border shadow-md p-2 cursor-pointer active:bg-slate-200 transition-all'
       src={image}
       alt='images'
-      width={80}
-      height={50}
+      width={100}
+      height={60}
       onClick={handleClick}
     />
   );
