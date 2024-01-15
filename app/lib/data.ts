@@ -15,28 +15,6 @@ export async function getAllProducts() {
   }
 }
 
-/***********************************************
-
-// export async function getFilteredProducts(
-//   query: string,
-//   currentPage: number,
-//   order: string
-// ) {
-//   noStore();
-//   try {
-//     const products = await sql<Product>`
-//     SELECT * FROM products
-//     WHERE products.title ILIKE ${`%${query}%`}
-//     ORDER BY ${order}
-//     LIMIT ${ITEMS_PER_PAGE * currentPage}
-//     `;
-//     return products.rows;
-//   } catch (error) {
-//     console.error(`Error while getting the data. ${error}`);
-//     throw new Error('Failed to fetch products.');
-//   }
-// }
-*/
 const ITEMS_PER_PAGE = 20;
 export async function getFilteredProducts(
   query: string,
