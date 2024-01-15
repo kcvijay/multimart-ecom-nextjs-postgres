@@ -29,7 +29,7 @@ export interface CartItemsType {
 }
 
 export type Product = {
-  pid: string;
+  id: string;
   title: string;
   description: string;
   price: number;

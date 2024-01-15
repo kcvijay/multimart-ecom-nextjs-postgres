@@ -9,7 +9,7 @@ import Link from 'next/link';
 const loading = false;
 
 interface Props {
-  pid: string;
+  id: string;
   brand: string;
   title: string;
   description: string;
@@ -23,7 +23,7 @@ interface Props {
 }
 
 export default function ProductCard({
-  pid,
+  id,
   brand,
   title,
   thumbnail,
@@ -82,7 +82,7 @@ export default function ProductCard({
         </div>
 
         <div className='flex gap-4 flex-wrap'>
-          <Link className='flex-1 btnProductView' href={`/products/${pid}`}>
+          <Link className='flex-1 btnProductView' href={`/products/${id}`}>
             View
           </Link>
           {stock > 0 ? (
@@ -114,7 +114,7 @@ export default function ProductCard({
 //     ) as ProductDataType[];
 //     const updatedCart = [
 //       ...existingCart,
-//       { pid, brand, thumbnail, title, price, discountpercentage },
+//       { id, brand, thumbnail, title, price, discountpercentage },
 //     ];
 //     setLoading(true);
 //     localStorage.setItem('cart', JSON.stringify(updatedCart));

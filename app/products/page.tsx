@@ -20,7 +20,7 @@ export default async function Products({
       <ProductSorting />
       <div className='grid-autofit justify-items-center place-items-center'>
         {allProducts.map((product) => (
-          <ProductCard key={product?.pid} {...product} />
+          <ProductCard key={product?.id} {...product} />
         ))}
       </div>
       <LoadMoreBtn

@@ -58,7 +58,7 @@ export async function getProductById(id: string) {
   try {
     const product = await sql<Product>`
     SELECT * FROM products
-    WHERE products.pid = ${id}
+    WHERE products.id = ${id}
     LIMIT 1
     `;
     return product.rows[0];
